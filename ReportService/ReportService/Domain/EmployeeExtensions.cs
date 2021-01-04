@@ -1,14 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ReportService.Domain
 {
-    public static class EmployeeCommonMethods
+    public static class EmployeeExtensions
     {
         public static int Salary(this Employee employee)
         {
@@ -25,9 +21,9 @@ namespace ReportService.Domain
             }
 
             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            var reader = new System.IO.StreamReader(httpResponse.GetResponseStream(), true);
+            var reader = new StreamReader(httpResponse.GetResponseStream(), true);
             string responseText = reader.ReadToEnd();
-            return (int)Decimal.Parse(responseText);
+            return (int)decimal.Parse(responseText);
         }
 
     }
