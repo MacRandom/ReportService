@@ -2,7 +2,7 @@
 using System.Net;
 using Newtonsoft.Json;
 
-namespace ReportService.Domain
+namespace ReportService.Models
 {
     public static class EmployeeExtensions
     {

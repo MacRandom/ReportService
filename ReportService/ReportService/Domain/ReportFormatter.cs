@@ -1,4 +1,5 @@
 ﻿using System;
+using ReportService.Models;
 
 namespace ReportService.Domain
 {

@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 using ReportService.Domain;
+using ReportService.Models;
 
 namespace ReportService.Controllers
 {
