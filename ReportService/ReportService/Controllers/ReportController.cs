@@ -44,21 +44,21 @@ namespace ReportService.Controllers
                     employees.Add(employee);
                 }
 
-                actions.Add((new ReportFormatter(null).NL, new Employee()));
-                actions.Add((new ReportFormatter(null).WL, new Employee()));
-                actions.Add((new ReportFormatter(null).NL, new Employee()));
-                actions.Add((new ReportFormatter(null).WD, new Employee() { Department = departmentName } ));
+                actions.Add((new ReportFormatter(null).NewLine, new Employee()));
+                actions.Add((new ReportFormatter(null).WriteLine, new Employee()));
+                actions.Add((new ReportFormatter(null).NewLine, new Employee()));
+                actions.Add((new ReportFormatter(null).WriteDepartment, new Employee() { Department = departmentName } ));
                 for (int i = 1; i < employees.Count(); i ++)
                 {
-                    actions.Add((new ReportFormatter(employees[i]).NL, employees[i]));
-                    actions.Add((new ReportFormatter(employees[i]).WE, employees[i]));
-                    actions.Add((new ReportFormatter(employees[i]).WT, employees[i]));
-                    actions.Add((new ReportFormatter(employees[i]).WS, employees[i]));
+                    actions.Add((new ReportFormatter(employees[i]).NewLine, employees[i]));
+                    actions.Add((new ReportFormatter(employees[i]).WriteEmployee, employees[i]));
+                    actions.Add((new ReportFormatter(employees[i]).WriteTab, employees[i]));
+                    actions.Add((new ReportFormatter(employees[i]).WriteSalary, employees[i]));
                 }  
 
             }
-            actions.Add((new ReportFormatter(null).NL, null));
-            actions.Add((new ReportFormatter(null).WL, null));
+            actions.Add((new ReportFormatter(null).NewLine, null));
+            actions.Add((new ReportFormatter(null).WriteLine, null));
 
             foreach (var act in actions)
             {
