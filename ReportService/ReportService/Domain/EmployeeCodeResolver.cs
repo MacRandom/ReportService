@@ -1,13 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace ReportService.Domain
 {
-    public class EmpCodeResolver
+    public class EmployeeCodeResolver
     {
         public static async Task<string> GetCode(string inn)
         {

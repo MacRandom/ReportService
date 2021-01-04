@@ -34,7 +34,7 @@ namespace ReportService.Controllers
                 while (employeeReader.Read())
                 {
                     var employee = new Employee() { Name = employeeReader.GetString(0), Inn = employeeReader.GetString(1), Department = employeeReader.GetString(2) };
-                    employee.BuhCode = EmpCodeResolver.GetCode(employee.Inn).Result;
+                    employee.BuhCode = EmployeeCodeResolver.GetCode(employee.Inn).Result;
                     employee.Salary = employee.Salary();
                     if (employee.Department != departmentName)
                         continue;
