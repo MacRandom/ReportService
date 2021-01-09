@@ -37,11 +37,11 @@ namespace ReportService.Domain
                     totalDepartmentSalary += employee.Salary;
                 }
 
-                _stringBuilder.AppendLine($"Всего по отделу: {totalDepartmentSalary}");
+                _stringBuilder.AppendLine($"Всего по отделу: {totalDepartmentSalary}р");
                 _stringBuilder.AppendLine(_line);
                 totalCompanySalary += totalDepartmentSalary;
             }
-            _stringBuilder.AppendLine($"Всего по предприятию: {totalCompanySalary}");
+            _stringBuilder.AppendLine($"Всего по предприятию: {totalCompanySalary}р");
             return _stringBuilder.ToString();
         }
     }
