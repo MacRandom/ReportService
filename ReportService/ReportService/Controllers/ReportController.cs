@@ -21,7 +21,7 @@ namespace ReportService.Controllers
         {
             string report = await _employeeReportBuilder.Build(year, month);
 
-            return File(Encoding.ASCII.GetBytes(report), "text/plain", "report.txt");
+            return File(Encoding.UTF8.GetBytes(report), "text/plain", "report.txt");
         }
     }
 }
