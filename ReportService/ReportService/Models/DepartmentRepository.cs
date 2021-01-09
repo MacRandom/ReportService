@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -21,9 +22,16 @@ namespace ReportService.Models
         {
             var departments = new List<Department>();
 
-            using (IDbConnection db = new SqlConnection(_connectionString))
+            try
             {
-                departments = db.Query<Department>("SELECT d.id, d.name from deps d where d.active = true").ToList();
+                using (IDbConnection db = new SqlConnection(_connectionString))
+                {
+                    departments = db.Query<Department>("SELECT d.id, d.name from deps d where d.active = true").ToList();
+                }
+            }
+            catch (Exception exc)
+            {
+                throw new Exception("Ошибка подключения к базе данных", exc);
             }
 
             return departments;

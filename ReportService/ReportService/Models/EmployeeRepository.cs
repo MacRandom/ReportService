@@ -27,9 +27,16 @@ namespace ReportService.Models
         {
             var employees = new List<Employee>();
 
-            using (IDbConnection db = new SqlConnection(_connectionString))
+            try
             {
-                employees = db.Query<Employee>("SELECT e.name, e.inn from emps e where e.departmentid = @id", new { id }).ToList();
+                using (IDbConnection db = new SqlConnection(_connectionString))
+                {
+                    employees = db.Query<Employee>("SELECT e.name, e.inn from emps e where e.departmentid = @id", new { id }).ToList();
+                }
+            }
+            catch (Exception exc)
+            {
+                throw new Exception("Ошибка подключения к базе данных", exc);
             }
 
             foreach (var employee in employees)
