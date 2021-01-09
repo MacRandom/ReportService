@@ -6,9 +6,9 @@ namespace ReportService.Domain
 {
     public class EmployeeReportBuilder : IEmployeeReportBuilder
     {
-        private StringBuilder _stringBuilder = new StringBuilder();
-        private IEmployeeRepository _employeeRepository;
-        private IDepartmentRepository _departmentRepository;
+        private readonly StringBuilder _stringBuilder = new StringBuilder();
+        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IDepartmentRepository _departmentRepository;
         private const string _line = "--------------------------------------------";
 
         public EmployeeReportBuilder(IEmployeeRepository employeeRepository, IDepartmentRepository departmentRepository)

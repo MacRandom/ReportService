@@ -9,7 +9,7 @@ namespace ReportService.Models
 {
     public class DepartmentRepository : IDepartmentRepository
     {
-        private string _connectionString = "Host=192.168.99.100;Username=postgres;Password=1;Database=employee";
+        private readonly string _connectionString = "Host=192.168.99.100;Username=postgres;Password=1;Database=employee";
 
         public List<Department> GetDepartments()
         {

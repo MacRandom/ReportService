@@ -11,9 +11,9 @@ namespace ReportService.Models
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        private string _connectionString = "Host=192.168.99.100;Username=postgres;Password=1;Database=employee";
-        private IEmployeeCodeProvider _employeeCodeProvider;
-        private IEmployeeSalaryProvider _employeeSalaryProvider;
+        private readonly string _connectionString = "Host=192.168.99.100;Username=postgres;Password=1;Database=employee";
+        private readonly IEmployeeCodeProvider _employeeCodeProvider;
+        private readonly IEmployeeSalaryProvider _employeeSalaryProvider;
 
         public EmployeeRepository(IEmployeeCodeProvider employeeCodeProvider, IEmployeeSalaryProvider employeeSalaryProvider)
         {

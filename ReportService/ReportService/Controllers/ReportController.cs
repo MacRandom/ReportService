@@ -8,7 +8,7 @@ namespace ReportService.Controllers
     [Route("api/[controller]")]
     public class ReportController : Controller
     {
-        private IEmployeeReportBuilder _employeeReportBuilder;
+        private readonly IEmployeeReportBuilder _employeeReportBuilder;
 
         public ReportController(IEmployeeReportBuilder employeeReportBuilder)
         {
