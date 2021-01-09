@@ -12,9 +12,9 @@ namespace ReportService.Models
     public class EmployeeRepository
     {
         private string _connectionString = "Host=192.168.99.100;Username=postgres;Password=1;Database=employee";
-        private IEmployeeCodeResolver _employeeCodeResolver;
+        private IEmployeeCodeProvider _employeeCodeResolver;
 
-        public EmployeeRepository(IConfiguration configuration, IEmployeeCodeResolver employeeCodeResolver)
+        public EmployeeRepository(IConfiguration configuration, IEmployeeCodeProvider employeeCodeResolver)
         {
             _employeeCodeResolver = employeeCodeResolver;
         }
@@ -30,7 +30,7 @@ namespace ReportService.Models
 
             foreach (var employee in employees)
             {
-                employee.BuhCode = await _employeeCodeResolver.GetCode(employee.Inn);
+                employee.BuhCode = await _employeeCodeResolver.GetCodeAsync(employee.Inn);
                 employee.Salary = employee.Salary();
             }
 
