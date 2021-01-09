@@ -3,13 +3,19 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
+using Microsoft.Extensions.Configuration;
 using ReportService.Abstract;
 
 namespace ReportService.Models
 {
     public class DepartmentRepository : IDepartmentRepository
     {
-        private readonly string _connectionString = "Host=192.168.99.100;Username=postgres;Password=1;Database=employee";
+        private readonly string _connectionString;
+
+        public DepartmentRepository(IConfiguration configuration)
+        {
+            _connectionString = configuration["ConnectionStrings:Default"];
+        }
 
         public List<Department> GetDepartments()
         {

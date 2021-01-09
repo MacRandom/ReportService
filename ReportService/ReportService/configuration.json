@@ -1,0 +1,9 @@
+{
+  "ConnectionStrings": {
+    "Default": "Host=192.168.99.100;Username=postgres;Password=1;Database=employee"
+  },
+  "ExternalApi": {
+    "BuhCodeApiUrl": "http://buh.local/api/inn/",
+    "SalaryApiUrl": "http://salary.local/api/empcode/"
+  }
+}

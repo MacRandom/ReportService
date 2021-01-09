@@ -5,18 +5,20 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
+using Microsoft.Extensions.Configuration;
 using ReportService.Abstract;
 
 namespace ReportService.Models
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        private readonly string _connectionString = "Host=192.168.99.100;Username=postgres;Password=1;Database=employee";
+        private readonly string _connectionString;
         private readonly IEmployeeCodeProvider _employeeCodeProvider;
         private readonly IEmployeeSalaryProvider _employeeSalaryProvider;
 
-        public EmployeeRepository(IEmployeeCodeProvider employeeCodeProvider, IEmployeeSalaryProvider employeeSalaryProvider)
+        public EmployeeRepository(IConfiguration configuration, IEmployeeCodeProvider employeeCodeProvider, IEmployeeSalaryProvider employeeSalaryProvider)
         {
+            _connectionString = configuration["ConnectionStrings:Default"];
             _employeeCodeProvider = employeeCodeProvider;
             _employeeSalaryProvider = employeeSalaryProvider;
         }
