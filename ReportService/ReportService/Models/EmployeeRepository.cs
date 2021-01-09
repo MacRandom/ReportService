@@ -5,7 +5,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using Microsoft.Extensions.Configuration;
 using ReportService.Abstract;
 
 namespace ReportService.Models
@@ -16,9 +15,9 @@ namespace ReportService.Models
         private IEmployeeCodeProvider _employeeCodeProvider;
         private IEmployeeSalaryProvider _employeeSalaryProvider;
 
-        public EmployeeRepository(IConfiguration configuration, IEmployeeCodeProvider employeeCodeResolver, IEmployeeSalaryProvider employeeSalaryProvider)
+        public EmployeeRepository(IEmployeeCodeProvider employeeCodeProvider, IEmployeeSalaryProvider employeeSalaryProvider)
         {
-            _employeeCodeProvider = employeeCodeResolver;
+            _employeeCodeProvider = employeeCodeProvider;
             _employeeSalaryProvider = employeeSalaryProvider;
         }
 
