@@ -3,10 +3,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
+using ReportService.Abstract;
 
 namespace ReportService.Models
 {
-    public class DepartmentRepository
+    public class DepartmentRepository : IDepartmentRepository
     {
         private string _connectionString = "Host=192.168.99.100;Username=postgres;Password=1;Database=employee";
 
