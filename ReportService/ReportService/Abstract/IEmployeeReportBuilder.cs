@@ -4,6 +4,6 @@ namespace ReportService.Abstract
 {
     public interface IEmployeeReportBuilder
     {
-        Task<string> Build(int year, int month);
+        Task<string> BuildAsync(int year, int month);
     }
 }

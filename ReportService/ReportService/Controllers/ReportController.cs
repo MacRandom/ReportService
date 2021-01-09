@@ -19,7 +19,7 @@ namespace ReportService.Controllers
         [Route("{year}/{month}")]
         public async Task<IActionResult> Download(int year, int month)
         {
-            string report = await _employeeReportBuilder.Build(year, month);
+            string report = await _employeeReportBuilder.BuildAsync(year, month);
 
             return File(Encoding.UTF8.GetBytes(report), "text/plain", "report.txt");
         }

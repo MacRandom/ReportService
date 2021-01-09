@@ -17,7 +17,7 @@ namespace ReportService.Domain
             _departmentRepository = departmentRepository;
         }
 
-        public async Task<string> Build(int year, int month)
+        public async Task<string> BuildAsync(int year, int month)
         {
             _stringBuilder.AppendLine($"{MonthNameResolver.MonthName.GetName(year, month)} {year}");
             _stringBuilder.AppendLine(_line);
