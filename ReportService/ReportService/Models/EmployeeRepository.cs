@@ -2,16 +2,24 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using Dapper;
-using ReportService.Domain;
+using Microsoft.Extensions.Configuration;
+using ReportService.Abstract;
 
 namespace ReportService.Models
 {
     public class EmployeeRepository
     {
         private string _connectionString = "Host=192.168.99.100;Username=postgres;Password=1;Database=employee";
+        private IEmployeeCodeResolver _employeeCodeResolver;
 
-        public List<Employee> GetEmployeesByDepartmentId(int id)
+        public EmployeeRepository(IConfiguration configuration, IEmployeeCodeResolver employeeCodeResolver)
+        {
+            _employeeCodeResolver = employeeCodeResolver;
+        }
+
+        public async Task<List<Employee>> GetEmployeesByDepartmentId(int id)
         {
             var employees = new List<Employee>();
 
@@ -22,7 +30,7 @@ namespace ReportService.Models
 
             foreach (var employee in employees)
             {
-                employee.BuhCode = EmployeeCodeResolver.GetCode(employee.Inn).Result;
+                employee.BuhCode = await _employeeCodeResolver.GetCode(employee.Inn);
                 employee.Salary = employee.Salary();
             }
 
