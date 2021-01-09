@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -12,11 +13,13 @@ namespace ReportService.Models
     public class EmployeeRepository
     {
         private string _connectionString = "Host=192.168.99.100;Username=postgres;Password=1;Database=employee";
-        private IEmployeeCodeProvider _employeeCodeResolver;
+        private IEmployeeCodeProvider _employeeCodeProvider;
+        private IEmployeeSalaryProvider _employeeSalaryProvider;
 
-        public EmployeeRepository(IConfiguration configuration, IEmployeeCodeProvider employeeCodeResolver)
+        public EmployeeRepository(IConfiguration configuration, IEmployeeCodeProvider employeeCodeResolver, IEmployeeSalaryProvider employeeSalaryProvider)
         {
-            _employeeCodeResolver = employeeCodeResolver;
+            _employeeCodeProvider = employeeCodeResolver;
+            _employeeSalaryProvider = employeeSalaryProvider;
         }
 
         public async Task<List<Employee>> GetEmployeesByDepartmentId(int id)
@@ -30,8 +33,12 @@ namespace ReportService.Models
 
             foreach (var employee in employees)
             {
-                employee.BuhCode = await _employeeCodeResolver.GetCodeAsync(employee.Inn);
-                employee.Salary = employee.Salary();
+                employee.BuhCode = await _employeeCodeProvider.GetCodeAsync(employee.Inn);
+
+                string salaryString = await _employeeSalaryProvider.GetSalaryAsync(employee.Inn, employee.BuhCode);
+
+                if (decimal.TryParse(salaryString, out decimal salary))
+                    employee.Salary = Convert.ToInt32(salary);
             }
 
             return employees;
