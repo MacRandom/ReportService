@@ -19,7 +19,7 @@ namespace ReportService.Domain
 
         public async Task<string> Build(int year, int month)
         {
-            _stringBuilder.AppendLine(MonthNameResolver.MonthName.GetName(year, month));
+            _stringBuilder.AppendLine($"{MonthNameResolver.MonthName.GetName(year, month)} {year}");
             _stringBuilder.AppendLine(_line);
 
             int totalCompanySalary = 0;
